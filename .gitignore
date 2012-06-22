@@ -1,5 +1,9 @@
-tmp/*
-config/database.php
-app/tmp/*
-app/config/database.php
+webapp/app/Config/database.php
+webapp/app/tmp/*
+webapp/app/Config/database_dev.php
+webapp/app/Config/database_prod.php
 !empty
+.buildpath
+.project
+.settings
+

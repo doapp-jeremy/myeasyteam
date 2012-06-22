@@ -1,0 +1,18 @@
+# link nginx
+export PROJECT_DIR=/home/jeremy/myeasyteam
+sudo ln -fs $PROJECT_DIR/etc/nginx_dev.conf /etc/nginx/sites-enabled/myeasyteam.conf
+
+# link Config files
+ln -fs $PROJECT_DIR/webapp/app/Config/core_dev.php $PROJECT_DIR/webapp/app/Config/core.php
+ln -fs $PROJECT_DIR/webapp/app/Config/database_dev.php $PROJECT_DIR/webapp/app/Config/database.php
+
+# www-data on ubuntu....will differ on mac (www?)
+sudo chgrp -R www-data $PROJECT_DIR/webapp/app/webroot;
+sudo chmod -R g+r $PROJECT_DIR/webapp/app/webroot;
+sudo chmod -R g+w $PROJECT_DIR/webapp/app/webroot/cache_css;
+sudo chmod -R g+w $PROJECT_DIR/webapp/app/webroot/cache_js;
+sudo chmod -R g+w $PROJECT_DIR/webapp/app/tmp/cache;
+
+sudo chgrp -R www-data $PROJECT_DIR/webapp/app/tmp;
+sudo chmod -R g+rw $PROJECT_DIR/webapp/app/tmp;
+

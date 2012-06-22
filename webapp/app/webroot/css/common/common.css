@@ -1,0 +1,120 @@
+body {
+	padding-top: 60px;
+	background-color: #FFFFFF;
+}
+
+.container {
+	width: auto;
+}
+
+.container>footer p {
+	text-align: center; /* center align it with the container */
+}
+
+.navbar-fixed-top .brand {
+    color: #000000;
+    font-weight: bold;
+    margin-left: 20px;
+    padding-left: 0;
+    padding-right: 10px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(255, 255, 255, 0.125);
+}
+.navbar-fixed-top .brand:hover {
+    text-decoration: none;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  background-image: url("/img/glyphicons-halflings.png");
+}
+.icon-white {
+  background-image: url("/img/glyphicons-halflings-white.png");
+}
+
+div.error-message {
+	/* when error is on new line */
+	margin-left: 150px;
+	color: #9D261D;
+	padding-top: 8px;
+}
+
+.cellCenter {
+	text-align: center !important;
+}
+
+.cellLeft {
+	text-align: left !important;
+}
+
+.hero-unit h1 {
+	margin-bottom: 8px;
+}
+
+.initialHide {
+	display: none;
+}
+
+.dataTables_wrapper input, .dataTables_wrapper select {
+  display: inline;
+}
+
+.dataTables_length select {
+	width: 100px;
+}
+
+div.dataTables_length label {
+	width: 460px;
+	float: left;
+	text-align: left;
+}
+
+div.dataTables_length select {
+	width: 75px;
+}
+
+div.dataTables_filter label {
+	float: right;
+	width: 460px;
+}
+
+div.dataTables_info {
+	padding-top: 8px;
+}
+
+div.dataTables_paginate {
+	float: right;
+	margin: 0;
+}
+
+table.dataTable th:active {
+	outline: none;
+}
+
+.accordion-heading {
+	background-color: #F2F2F2;
+}
+
+#ads .adStatus0
+{
+	color: red;
+}
+#ads .adStatus10
+{
+  color: black;
+}
+#ads .adStatus20
+{
+  color: red;
+}
+#ads .adStatus40
+{
+  color: red;
+}
+#ads .adStatus50
+{
+  color: red;
+}
+
+#ads .adStatus1
+{
+  color: green;
+}

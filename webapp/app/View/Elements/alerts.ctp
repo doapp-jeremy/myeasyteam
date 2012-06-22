@@ -1,0 +1,3 @@
+<div class="alert alert-success" id="successMsg" style="display: none"><button class="close" data-dismiss="alert">×</button> <span></span></div>
+<div class="alert alert-error" id="errorMsg" style="display: none"><button class="close" data-dismiss="alert">×</button> <span></span></div>
+<div class="alert alert-info" id="infoMsg" style="display: none"><button class="close" data-dismiss="alert">×</button> <span></span></div>

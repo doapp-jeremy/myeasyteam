@@ -1,0 +1,15 @@
+[submodule "submodules/cakephp"]
+	path = submodules/cakephp
+	url = https://github.com/cakephp/cakephp.git
+[submodule "submodules/debug_kit"]
+	path = submodules/debug_kit
+	url = https://github.com/cakephp/debug_kit.git
+[submodule "submodules/jquery-form"]
+	path = submodules/jquery-form
+	url = https://github.com/malsup/form
+[submodule "submodules/asset_compress"]
+	path = submodules/asset_compress
+	url = https://github.com/markstory/asset_compress.git
+[submodule "submodules/aws-sdk-for-php"]
+	path = submodules/aws-sdk-for-php
+	url = git://github.com/amazonwebservices/aws-sdk-for-php.git
