@@ -10,7 +10,22 @@
 <?php if (Configure::read('debug') >= 1): ?>
 	<link rel="stylesheet" href="/css/cake.debug.css">
 <?php endif; ?>
-  	
+    
+    <? if($this->fetch('useCharts')): ?>
+    <? // is there a way to use AssetCompress to load this api? ?>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <?php // TODO: how to get this included in this spot from element ?>
+    <script type="text/javascript" src="/js/Events/chart.js"></script>
+    <script type="text/javascript">
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+    </script>
+    <? endif ?>
+    <?php echo $scripts_for_layout; ?>
     <!-- HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -56,7 +71,6 @@
 		}
     echo $this->AssetCompress->script('common');
     echo $this->AssetCompress->includeJs();
-		echo $this->AssetCompress->includeJs();
 		echo $scripts_for_layout;
 		echo $this->Js->writeBuffer(); // Any Buffered Scripts
 		?>

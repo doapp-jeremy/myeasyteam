@@ -1,3 +1,4 @@
+
 <div class="container">
   <?php if (!empty($nextEvent)): ?>
   <div class="hero-unit">
@@ -9,7 +10,10 @@
   	?>
     </p>
     <p>
-    <?php echo $this->Html->link(__('Go!'), array('controller' => 'Events', 'action' => 'view', $nextEvent['Event']['id']), array('class' => 'btn btn-primary btn-large')); ?>
+      <?php echo $this->Html->link(__('Go!'), array('controller' => 'Events', 'action' => 'view', $nextEvent['Event']['id']), array('class' => 'btn btn-primary btn-large')); ?>
+    </p>
+    <p>
+      <?php echo $this->element('response_chart', array('eventId' => $nextEvent['Event']['id'], 'divId' => 'chart_div')); ?>
     </p>
   </div>
   <?php endif; ?>

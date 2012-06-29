@@ -56,6 +56,9 @@ input,select,textarea {outline:none;}
 }
 .bold { font-weight : bold;}
 .clear { clear : both; }
+a.btn-primary:link {
+	color : #ffffff;
+}
 a:link,a:active,a:visited {
 	color : #0000ff;
 	text-decoration : none;

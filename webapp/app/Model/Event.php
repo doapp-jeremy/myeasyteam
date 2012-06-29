@@ -1,6 +1,32 @@
 <?php
 class Event extends AppModel
 {
+  var $belongsTo = array(
+      'Team' => array(
+          'className' => 'Team',
+          'foreignKey' => 'team_id',
+          'conditions' => '',
+          'fields' => '',
+          'order' => ''
+      ),
+  );
+  
+  var $hasMany = array(
+      'Response' => array(
+          'className' => 'Response',
+          'foreignKey' => 'event_id',
+          'dependent' => true,
+          'conditions' => '',
+          'fields' => '',
+          'order' => '',
+          'limit' => '',
+          'offset' => '',
+          'exclusive' => '',
+          'finderQuery' => '',
+          'counterQuery' => ''
+      ),
+  );
+  
   
   function findNextEvent($userId, $teamId = false)
   {
@@ -34,4 +60,5 @@ class Event extends AppModel
     $event = $this->query($query);
     return !empty($event) ? $event[0] : array();
   }
+  
 }

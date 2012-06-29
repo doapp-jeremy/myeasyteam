@@ -1,6 +1,6 @@
 <?php
 $this->AssetCompress->addScript(array('Users/login.js'),'users_login');
-$this->assign('useAjaxForm', '1'); 
+$this->assign('useAjaxForm', '1');
 ?>
 <div data-role="header">
 	<h1>Login</h1>

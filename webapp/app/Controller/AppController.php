@@ -162,4 +162,39 @@ class AppController extends Controller {
   {
     return $this->Session->read('Auth.User.id');
   }
+  
+  /**
+   * Do a get of a URL
+   *
+   * @param unknown_type $URL
+   * @param unknown_type $requestHeaders
+   * @return array 'http_code'=>response Code,'response_body'=>response body,'curl_info'=>curl_info() array,'response_headers'=>raw headers
+   */
+  function doGet($URL,$requestHeaders = array('Connection: close')) {
+    $ch = curl_init($URL);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);	//doesnt work in setopt_array...
+    curl_setopt_array($ch,array(
+        CURLOPT_HEADER => true,
+        CURLOPT_HTTPHEADER => $requestHeaders,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_MAXREDIRS => 3,
+        CURLOPT_CONNECTTIMEOUT => 3,	//The number of seconds to wait while trying to connect. Use 0 to wait indefinitely.
+        CURLOPT_TIMEOUT => 20,			//The maximum number of seconds to allow cURL functions to execute.
+        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYHOST => false,
+        CURLOPT_FAILONERROR => true,
+        CURLOPT_ENCODING => ""			//Accept gzip etc. a header containing all supported encoding types is sent when "" is passed
+    ));
+  
+    $response = curl_exec($ch);
+    $info = curl_getinfo($ch);
+    curl_close($ch);
+  
+    $headerSize = $info['header_size'];
+    $headers = substr($response, 0, $headerSize);
+    $responseBody = substr($response, $headerSize);
+  
+    return array('http_code'=>$info['http_code'],'response_body'=>$responseBody,'curl_info'=>$info,'response_headers'=>$headers);
+  }
+  
 }

@@ -35,9 +35,12 @@ class UsersController extends AppController
       {
         self::renderJsonErrorForAjaxForm(__('Oops - please correct errors below'),$this->convertErrorsToAjaxFieldDomIds('User',$this->User->validationErrors));
       }
-    
+      // TODO: how to set contain before Auth queries for user
+      $this->User->contain = array();
       if ($this->Auth->login())
       {
+        // set session data
+        $this->setSessionData($this->Auth->user());
         if (!$redirectUrl = $this->Session->read('Auth.redirect'))
         {
           $redirectUrl = '/';
@@ -46,10 +49,12 @@ class UsersController extends AppController
         {
           $this->Session->delete('Auth.redirect');
         }
-        if ($this->request->is('ajax')){
+        if ($this->request->is('ajax'))
+        {
           $this->renderJsonSuccessForAjaxForm(null,$redirectUrl);
         }
-        else {
+        else 
+        {
           return $this->redirect($redirectUrl);
         }
       }
@@ -71,4 +76,45 @@ class UsersController extends AppController
     }
     //$this->render('login2');
   }
+  
+  private function setSessionData($user = false)
+  {
+    // write ability
+    // A user that manages a teams can edit it's info, events, players, etc.
+    // Only a user that created the team can delete it.
+    $teams = $this->User->Team->getTeamsUserOwnsOrManages($user['id']);
+    $teamIds = Set::extract('/Team/id', $teams);
+    $this->Session->write('Auth.User.Teams.write', $teamIds);
+    $deleteAbleTeamIds = array();
+    foreach ($teams as $team)
+    { 
+      if ($team['Team']['user_id'] == $user['id'])
+      {
+        $deleteAbleTeamIds[] = $team['Team']['id'];
+      }
+    }
+    $this->Session->write('Auth.User.Teams.delete', $deleteAbleTeamIds);
+    // events
+    $events = $this->User->Team->Event->find('all', array(
+        'fields' => array('Event.id'), 'conditions' => array('Event.team_id' => $teamIds)));
+    $this->Session->write('Auth.User.Events.write', Set::extract('/Event/id', $events));
+    // players
+    $players = $this->User->Team->Player->find('all', array(
+        'fields' => array('Player.id', 'Player.team_id'), 'conditions' => array('Player.team_id' => $teamIds)));
+    $this->Session->write('Auth.User.Players.write', Set::extract('/Player/id', $players));
+    //var_dump($this->Session->read('Auth.User.Players.write'));
+    
+    
+    // read ability
+    // events
+    $teamIds = array_merge($teamIds, Set::extract('/Player/team_id', $players));
+    $this->Session->write('Auth.User.Teams.read', $teamIds);
+    $events = $this->User->Team->Event->find('all', array(
+        'fields' => array('Event.id'), 'conditions' => array('Event.team_id' => $teamIds)));
+    $this->Session->write('Auth.User.Events.read', Set::extract('/Event/id', $events));
+    //var_dump($this->Session->read('Auth.User.Events.read'));
+    
+  }
+  
+  
 }
