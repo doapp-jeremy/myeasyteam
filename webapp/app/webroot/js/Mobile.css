@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+@charset "utf-8";
+		body {font-family:Helvetica, sans-serif; background:#e9e9e9; margin:0; padding:0; color:#000;}
+		ul, ol, dl {padding:0; margin:0;}
+		h1, h2, h3, h4, h5, h6, p {margin-top:0; padding:0;}
+		a img {border:none;}
+		a {-webkit-tap-highlight-color:rgba(255, 255, 255, 0);}
+		a:link {color:#42413C; text-decoration:underline;}
+		a:visited {color:#6E6C64; text-decoration:underline;}
+			a:hover, a:active, a:focus {text-decoration:none; outline:0; -webkit-tap-highlight-color:rgba(255, 255, 255, 0);}
+		.container {margin:0; padding:0;}
+
+		.image {position:relative; margin:5px 0px 5px 5px; padding:2px; border:1px solid #989898; background-color:#fff; height:109px; border-radius:2px; display:block; float:left;}
+		.image img {width:146px;}
+		.image .title {position:absolute; bottom:-14px; left:0; padding:8px 0 8px 7px; background-color:rgba(255,255,255,0.75); width:143px; min-height:16px; font-weight:bold; font-size:14px; z-index:2; display:inline-block; vertical-align:middle;}
+
+		#overlay {position:absolute; top:0; left:0; width:100%; height:10000px; background-color:rgba(0,0,0,0.5); display:none; text-align:center; z-index:1000;}
+		#popup {margin:5px; padding:2px; background:#fff url(images/loadinfo.gif) center center no-repeat; width:304px; min-height:255px; border:1px solid #989898; text-align:left; -moz-transform: rotate(360deg);
+		  -o-transform: rotate(360deg);
+		  -ms-transform: rotate(360deg);
+		  left: 627px;}
+		
+		#popup .popup_header {background-color:#e9e9e9; padding-left:10px;}
+		#popup #popup_title {float:left; font-weight:bold; font-size:16px; line-height:40px;}
+		#popup #popup_close {float:right; margin:8px 8px 0 0;}
+		#popup #popup_img {width:304px;}
+
+		.wxnow {margin:5px 10px 0 10px;}
+		.wxnow p {margin-top:10px; font-size:16px;}
+		video {width:294px; height:220px; padding:2px; border:1px solid #989898; background-color:#fff;}
+		.playvideo {display:block; position:absolute; top:5px; left:10px; padding:80px 118px;}
+
+		.stormcenter {margin:5px 10px 0 10px;}
+		.stormcenter h2 {font-size:18px; font-weight:bold;}
+		.stormcenter p {font-family:Georgia, "Times New Roman", Times, serif; font-size:15px;}
+
+		header, section, footer, aside, nav, article, figure {display:block;}
+
+		@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+			.replace-2x {font-size:1px;}
+		}

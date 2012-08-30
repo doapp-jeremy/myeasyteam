@@ -16,6 +16,10 @@
       <?php echo $this->element('response_chart', array('eventId' => $nextEvent['Event']['id'], 'divId' => 'chart_div')); ?>
     </p>
   </div>
+  <?php else: ?>
+    <div class="hero-unit">
+      <h2>No Upcoming Event</h2>
+    </div>
   <?php endif; ?>
 </div>
 
@@ -30,4 +34,9 @@
 	</div>
   <?php endforeach; ?>
 </div>
+<?php else: ?>
+  <div class="hero-unit">
+  	<h2>No Active Teams</h2>
+  	<p><?php echo $this->Html->link(__('View All'), array('controller' => 'Teams', 'action' => 'index'), array('class' => 'btn')); ?>
+  </div>
 <?php endif; ?>

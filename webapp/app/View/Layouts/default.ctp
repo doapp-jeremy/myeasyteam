@@ -14,7 +14,8 @@
     <? if($this->fetch('useCharts')): ?>
     <? // is there a way to use AssetCompress to load this api? ?>
     <!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <!-- <script type="text/javascript" src="http://www.google.com/jsapi"></script> -->
+<!--     <script type="text/javascript" src="/js/jsapi"></script> -->
     <?php // TODO: how to get this included in this spot from element ?>
     <script type="text/javascript" src="/js/Events/chart.js"></script>
     <script type="text/javascript">
@@ -31,7 +32,10 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   	<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" /> -->
-  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
+  	
+  	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+  	<script src="/js/jquery.min.js"></script>
+  	
   	<!-- <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script> -->
   	<?php 
 		echo $this->AssetCompress->css('common');

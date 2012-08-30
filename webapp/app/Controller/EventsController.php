@@ -62,7 +62,7 @@ class EventsController extends AppController {
 	  }
 	  if (!in_array($eventId, $this->Session->read('Auth.User.Events.read')))
 	  {
-	    $this->Session->setFlash($_('You are not authorized'));
+	    $this->Session->setFlash(_('You are not authorized'));
 	    $this->redirect(array('action' => 'index'));
 	  }
 	}
