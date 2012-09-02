@@ -13,3 +13,6 @@
 [submodule "submodules/aws-sdk-for-php"]
 	path = submodules/aws-sdk-for-php
 	url = git://github.com/amazonwebservices/aws-sdk-for-php.git
+[submodule "submodules/daterangepicker"]
+	path = submodules/daterangepicker
+	url = git://github.com/dangrossman/bootstrap-daterangepicker.git
