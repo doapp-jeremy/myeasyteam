@@ -111,6 +111,12 @@ class TeamsController extends AppController {
 	{
 	  $this->checkAuth($id, true);
 	  
+	  if (!empty($this->data))
+	  {
+	    debug($this->data);
+	    exit();
+	  }
+	  
 	  $fields = array('Team.id', 'Team.name');
 	  $conditions = array('Team.id' => $id);
 	  $contain = array(
