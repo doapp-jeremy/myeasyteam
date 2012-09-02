@@ -1,6 +1,6 @@
 <?
-echo $this->AssetCompress->css('daterange');
-echo $this->AssetCompress->script('daterange');
+echo $this->AssetCompress->css('datetimepicker');
+echo $this->AssetCompress->script('datetimepicker');
 $this->AssetCompress->addScript('Elements/add_edit_event.js');
 ?>
 <div>
@@ -15,9 +15,15 @@ $this->AssetCompress->addScript('Elements/add_edit_event.js');
 				</div>
 			</div>
 			<div class="control-group">
-				<label for="catId" class="control-label">Date</label>
+				<label for="catId" class="control-label">Start</label>
 				<div class="controls">
-					<input id="date" name="date" class="input-medium" required>
+					<input id="start" name="start" class="input-medium" required>
+				</div>
+			</div>
+			<div class="control-group">
+				<label for="catId" class="control-label">End</label>
+				<div class="controls">
+					<input id="end" name="end" class="input-medium" required>
 				</div>
 			</div>
 			
