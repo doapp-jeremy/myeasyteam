@@ -16,7 +16,18 @@ task :restart_php do
   run "#{current_path}/etc/restartPHPFpm.sh"
 end
 
+task :test_nginx do
+  run "sudo /etc/init.d/nginx configtest"
+end
+
+
 task :restart_nginx do
+  test_nginx
+  run "sudo /etc/init.d/nginx reload"
+end
+
+task :reload_nginx do
+  test_nginx
   run "sudo /etc/init.d/nginx reload"
 end
 
