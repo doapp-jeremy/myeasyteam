@@ -52,19 +52,48 @@ class EventsController extends AppController {
 	    $this->Session->setFlash($_('Invalid event id'));
 	    $this->redirect(array('action' => 'index'));
 	  }
-	  if ($write)
+	  if (in_array($eventId, $this->Session->read('Auth.User.Events.write')))
 	  {
-	    if (!in_array($eventId, $this->Session->read('Auth.User.Events.write')))
+	    return true;
+	  }
+	  else if (!$write && in_array($eventId, $this->Session->read('Auth.User.Events.read')))
+	  {
+	    return true;
+	  }
+	  $this->Session->setFlash(_('You are not authorized: ' . $eventId));
+	  $this->redirect(array('action' => 'index'));
+	}
+	
+	function edit($id = null)
+	{
+	  if (!empty($this->data))
+	  {
+	    $this->checkAuth($this->data['Event']['id']);
+	    if (!$this->Event->save($this->data))
 	    {
-	      $this->Session->setFlash($_('You are not authorized'));
-	      $this->redirect(array('action' => 'index'));
+	      $this->Session->setFlash(__('Could not save event'));
+	      return;
 	    }
+	    $this->Session->setFlash(__('Event saved'));
+	    $this->redirect(array('controller' => 'Events', 'action' => 'view', $this->data['Event']['id']));
+	    return;
 	  }
-	  if (!in_array($eventId, $this->Session->read('Auth.User.Events.read')))
-	  {
-	    $this->Session->setFlash(_('You are not authorized'));
-	    $this->redirect(array('action' => 'index'));
-	  }
+	   
+	  $this->checkAuth($id, true);
+	  
+	  $fields = array();
+	  $conditions = array('Event.id' => $id);
+	  $contain = array(
+	      'Team' => array('fields' => array('Team.id', 'Team.name', 'Team.default_location'))
+	  );
+	  $this->data = $this->Event->find('first', compact('fields', 'conditions', 'contain'));
+	  $team = $this->data;
+	  
+	  $responseTypes = $this->Event->ResponseType->find('list');
+	   
+	  $teams = $this->Event->Team->getTeamsUserOwnsOrManagesAsList($this->getUserId());
+	   
+	  $this->set(compact('team', 'responseTypes', 'teams'));
 	}
 	
 	function view($id = null)

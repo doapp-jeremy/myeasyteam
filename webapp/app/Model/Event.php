@@ -9,6 +9,14 @@ class Event extends AppModel
           'fields' => '',
           'order' => ''
       ),
+      'ResponseType' => array(
+          'className' => 'ResponseType',
+          'foreignKey' => 'response_type_id',
+          'conditions' => '',
+          'fields' => '',
+          'order' => ''
+      ),
+      
   );
   
   var $hasMany = array(

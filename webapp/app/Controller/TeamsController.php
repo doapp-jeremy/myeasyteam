@@ -67,7 +67,7 @@ class TeamsController extends AppController {
 	{
 	  if (!$id)
 	  {
-	    $this->Session->setFlash($_('Invalid team id'));
+	    $this->Session->setFlash(__('Invalid team id'));
 	    $this->redirect(array('action' => 'home'));
 	  }
 	  if ($write)
@@ -109,27 +109,41 @@ class TeamsController extends AppController {
 	
 	function add_event($id = null)
 	{
-	  $this->checkAuth($id, true);
-	  
 	  if (!empty($this->data))
 	  {
-	    debug($this->data);
-	    exit();
+	    $this->checkAuth($this->data['Event']['team_id']);
+	    if (!$this->Team->Event->save($this->data))
+	    {
+	      $this->Session->setFlash(__('Could not save event'));
+	      return;
+	    }
+	    // add event id to auth list
+	    $eventIds = $this->Session->read('Auth.User.Events.write');
+	    $eventIds[] = $this->Team->Event->getLastInsertID();
+	    $this->Session->write('Auth.User.Events.write', $eventIds);
+	    $this->Session->setFlash(__('Event added'));
+	    $this->redirect(array('controller' => 'Teams', 'action' => 'view', $this->data['Event']['team_id']));
+	    return;
 	  }
 	  
-	  $fields = array('Team.id', 'Team.name');
+	  $this->checkAuth($id, true);
+	  $fields = array('Team.id', 'Team.name', 'Team.default_location');
 	  $conditions = array('Team.id' => $id);
-	  $contain = array(
-	      'Player' => array('fields' => array(),'order' => array('Player.player_type_id' => 'ASC'),
-	          'PlayerType' => array('fields' => array('PlayerType.name')),
-	          'User' => array('fields' => array('User.first_name', 'User.last_name', 'User.email')
-	          )
-	       ),
-	      'UpcomingEvent' => array('fields' => array('UpcomingEvent.id', 'UpcomingEvent.name', 'UpcomingEvent.start', 'UpcomingEvent.end', 'UpcomingEvent.location')
-	    )
-	  );
-	  $team = $this->Team->find('first', compact('fields', 'conditions', 'contain'));
+// 	  $contain = array(
+// 	      'Player' => array('fields' => array(),'order' => array('Player.player_type_id' => 'ASC'),
+// 	          'PlayerType' => array('fields' => array('PlayerType.name')),
+// 	          'User' => array('fields' => array('User.first_name', 'User.last_name', 'User.email')
+// 	          )
+// 	       ),
+// 	      'UpcomingEvent' => array('fields' => array('UpcomingEvent.id', 'UpcomingEvent.name', 'UpcomingEvent.start', 'UpcomingEvent.end', 'UpcomingEvent.location')
+// 	    )
+// 	  );
+	  $team = $this->Team->find('first', compact('fields', 'conditions'));//, 'contain'));
 	  
-	  $this->set(compact('team'));
+	  $responseTypes = $this->Team->Event->ResponseType->find('list');
+	  
+	  $teams = $this->Team->getTeamsUserOwnsOrManagesAsList($this->getUserId());
+	  
+	  $this->set(compact('team', 'responseTypes', 'teams'));
 	}
 }

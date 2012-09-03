@@ -14,6 +14,12 @@
     ?>
     </p>
     <p>
+    <?php echo $event['Event']['location']; ?>
+    </p>
+    <p>
+    <?php echo $event['Event']['description']; ?>
+    </p>
+    <p>
     <?php echo $this->Html->link($event['Team']['name'], array('controller' => 'Teams', 'action' => 'view', $event['Event']['team_id']), array('class' => 'btn btn-primary btn-large')); ?>
     </p>
     <p>

@@ -66,11 +66,22 @@ class Team extends AppModel
     return $teams;
   }
   
+  public function getTeamsUserOwnsOrManagesAsList($userId)
+  {
+    $teams = $this->getTeamsUserOwnsOrManages($userId);
+    $teamList = array();
+    foreach ($teams as $team)
+    {
+      $teamList[$team['Team']['id']] = $team['Team']['name'];
+    }
+    return $teamList;
+  }
+  
   public function getTeamsUserOwnsOrManages($userId)
   {
     $query = "
       SELECT
-        Team.id, Team.user_id
+        Team.id, Team.user_id, Team.name
       FROM
         teams AS Team
         LEFT JOIN teams_managers AS Manager ON (Manager.team_id = Team.id)
