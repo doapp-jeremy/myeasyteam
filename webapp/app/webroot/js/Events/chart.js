@@ -12,7 +12,7 @@ function drawChart() {
   var eventId = $('#eventId').val();
   
   $.ajax({
-    url: '/Events/getResponses/' + eventId,
+    url: '/Events/get_responses/' + eventId,
     cache: false,
     dataType: 'json',
     success: function(event) {

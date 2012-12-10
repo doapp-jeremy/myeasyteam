@@ -3,7 +3,8 @@
 		<div class="container-fluid">
 			<a class="brand" href="/">My EZ Team</a>
 			<ul id="mainNav" class="nav">
-				<li id="appFeedsNav"><?php echo $this->Html->link('Teams', array('controller' => 'Teams', 'action' => 'index')); ?></li>
+				<li id="teamsNav"><?php echo $this->Html->link('Teams', array('controller' => 'Teams', 'action' => 'index')); ?></li>
+				<!-- 
 				<li id="adsNav" class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">Ads <b class="caret"></b></a>
 					<ul class="dropdown-menu">
@@ -28,9 +29,11 @@
 					</ul>
 				</li>
 				<li id="publisherNav"><a href="/Publishers/invoices">Publishers</a></li>
+				 -->
 				<li class="divider-vertical"></li>
 				<li><div class="spinner" class="pull-right" style="width: 19px; height: 19px; padding: 10px 10px 11px; color: white;"></div></li>		
 			</ul>
+			
 			<?php if ($user = $this->Session->read('Auth.User')): ?>
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">

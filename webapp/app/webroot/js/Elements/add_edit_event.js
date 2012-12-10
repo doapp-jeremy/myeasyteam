@@ -27,4 +27,6 @@ $(function() {
     end.setHours(start.getHours() + 1);
     $('#EventEnd').val(defaultConv.format(end));
   });
+  
+  
 });

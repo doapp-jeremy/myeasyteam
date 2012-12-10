@@ -4,15 +4,17 @@ echo $this->AssetCompress->css('datetimepicker');
 echo $this->AssetCompress->script('datetimepicker');
 $this->AssetCompress->addScript('Elements/add_edit_event.js');
 ?>
-<div>
-  <form class="form-horizontal" id="doAdRequest" method="post">
+<div class="container">
+	<div class="row">
+		<div class="span4 offset4 well">
+  <form method="post">
   <?php echo $this->Form->create('Event', array(
       'type' => 'post',
       'inputDefaults' => array(
-          'class' => 'input-medium',
-          'div' => 'control-group',
-          'between' => '<div class="controls">',
-          'after' => '</div>'
+          'class' => 'span4',
+          'div' => false,
+          //'between' => '<div class="controls">',
+          //'after' => '</div>'
       )
     )); ?>
     <fieldset>
@@ -49,30 +51,10 @@ $this->AssetCompress->addScript('Elements/add_edit_event.js');
 			    'options' => $responseTypes
 			)); ?>
 			
-      <?php if (false): ?>
-			<div class="control-group">
-				<label for="catId" class="control-label">Name</label>
-				<div class="controls">
-					<input id="name" name="name" class="input-medium" required>
-				</div>
-			</div>
-			<div class="control-group">
-				<label for="catId" class="control-label">Start</label>
-				<div class="controls">
-					<input id="start" name="start" class="input-medium" required>
-				</div>
-			</div>
-			<div class="control-group">
-				<label for="catId" class="control-label">End</label>
-				<div class="controls">
-					<input id="end" name="end" class="input-medium" required>
-				</div>
-			</div>
-			<?php endif; ?>
-			<div class="form-actions">
-				<button class="btn btn-primary" type="submit">Add Event</button>
-			</div>
+			<button class="btn btn-info btn-block" type="submit">Add Event</button>
 
 		</fieldset>
   </form>
+</div>
+</div>
 </div>

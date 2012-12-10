@@ -110,10 +110,10 @@ class EventsController extends AppController {
 	  $this->set(compact('event'));
 	}
 	
-	function getResponses($eventId = null)
+	function get_responses($eventId = null)
 	{
 	  $this->checkAuth($eventId);
-	  
+	   
 	  $fields = array();
 	  $conditions = array('Event.id' => $eventId);
 	  $contain = array(

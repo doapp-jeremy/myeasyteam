@@ -4,7 +4,6 @@ body {
 	padding : 0;
 	text-align : center;
 	font-family : "Helvetica Neue", "Helvetica", sans-serif;
-	background : #f2f2f2 url(../img/adagogo/body_bg.png) repeat-x top;
 	font-size:14px;
 }
 a img, a {
@@ -131,7 +130,6 @@ input.blackbox {
 .toplinkspace  a { font-size:12px; }
 .toplinkspace img{vertical-align:middle;}
 .viewappCartbg {
-	background : transparent url(../img/adagogo/viewappcart.png) no-repeat right;
 	height : 34px;
 	width : 233px;
 	text-align : left;
@@ -144,7 +142,6 @@ a.viewappCart:link, a.viewappCart:visited, a.viewappCart:hover, a.viewappCart:ac
 	font : bold 18px/34px "Helvetica Neue", "Helvetica", sans-serif;
 }
 .cartbg {
-	background : transparent url(../img/adagogo/cartbg.gif) no-repeat right 3px;
 	height : 26px;
 	width : 57px;
 	float : left;
@@ -279,7 +276,6 @@ a.footlink:link, a.footlink:active, a.footlink:visited, a.footlink:hover {
 }
 #userDropdown
 {
-    background: transparent url(../img/adagogo/sign_in_popover.png) no-repeat;
 	display: none;
     height: 241px;
     padding-top: 36px;
@@ -354,7 +350,6 @@ a.menulink:hover,a.menulinksel:link,a.menulinksel:active,a.menulinksel:visited,a
 /**    End     */
 /**   Submenu    **/
 #submenu{ 
-	background:url(../img/adagogo/submenu_bg.png) no-repeat top;
 	height:25px;
 	width:967px;	
 	float:left;
